@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1.0, user-scalable=yes" />
+	<title>DATA API - submarinecablemap.com </title>
+	<!-- <meta name="description" content="content"> -->
+	<link rel="stylesheet" type="text/css" href="css/cables-api.css" />
+</head>
+
+<body id="body">
+	<main>
+		<div id="index-container" class="visible">
+			<ul id="index-ul"></ul>
+		</div>
+
+		<div id="cable-info">
+			<div id="name"></div>
+			<hr>
+			<div id="rfs"></div>
+			<hr>
+			<div id="landing-points"></div>
+			<hr>
+			<div id="owners"></div>
+		</div>
+	</main>
+
+	<div id="control-container">
+        <a id="button-show-index" class="a-control">Index</a>
+        <a id="button-sort-year" class="a-control a-sort underline">Sort by RFS year</a>
+        <a id="button-sort-name" class="a-control a-sort">Sort by cable name</a>
+        <a id="a-filter-mediterranean" class="a-control">Filter: Mediterranean</a>
+    </div> <!--Control Container -->
+
+
+	<!--External Javascript -->
+	<script src="js/cables-api.js"></script>
+</body>
+
+</html>
