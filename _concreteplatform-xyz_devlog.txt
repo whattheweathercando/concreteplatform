@@ -1,0 +1,18 @@
+# Concrete Platform
+
+
+
+
+* * * 
+
+link 
+<landing points> in api/v2/cable/.. 
+to 
+api/v2/landing-point/..
+
+
+* * * 
+
+Import data in Airtable 
+? from json,csv
+? from API

@@ -1,13 +1,25 @@
 // CONCRETE PLATFORM
 
 // fetch JSON DATA from submarinecablemap.com github API
+// https://github.com/telegeography/www.submarinecablemap.com/tree/master/web/public/api/v3/cable
+// https://raw.githubusercontent.com/telegeography/www.submarinecablemap.com/master/web/public/api/v3/cable/all.json
 
-let platformData;
+// "Please note that we no longer maintain and update a repository on GitHub for our data or our source code.
+// :(
+// -> use last download from 211126
+// -> web > public > api > v3 > cable > all.json
+
+
+let platformData = [];
+let singleCableData;
+let landingPoints;
+
 let i = 0;
+
 
 const fetchAllCablesData = async() => {
 	try {
-		let requestUrl = 'https://raw.githubusercontent.com/telegeography/www.submarinecablemap.com/master/public/api/v2/cable/all.json';
+		let requestUrl = 'data/api/v3/cable/all.json';
   		let response = await fetch(requestUrl);
   		return await response.json();
 	} catch(err) {
@@ -21,7 +33,7 @@ function populateIndex(){
 	platformData.forEach((data, index) => {
 		// console.log(index);
 		// console.log(data.cable);
-		let dataLink = `https://raw.githubusercontent.com/telegeography/www.submarinecablemap.com/master/public/api/v2/cable/${data.id}.json`
+		let dataLink = `data/api/v3/cable/${data.id}.json`
 		let li = document.createElement('li');
 		li.innerHTML = `<a class="a-cable" id="${data.cable_id}" data-src="${dataLink}">${data.name}</a>`;
 		ul.appendChild(li);
@@ -29,17 +41,22 @@ function populateIndex(){
 }
 
 
-let singleCableData;
-let landingPoints;
 
-// or write in arrow function..
+
+
 async function fetchSingleCableData(url){
 	let requestUrl = url;
 	let response = await fetch(requestUrl);
 	return await response.json();
 }
 
-function populateCableInfo() {
+
+// async function fetchRandomLayers(){}
+// fetchRandomSong
+// fetchRandomDevice
+
+
+function populatePlatform() {
 	document.querySelector('#name').innerHTML = `<h3>${singleCableData.name}</h3>`;
 	document.querySelector('#rfs').innerHTML = singleCableData.rfs;
 	// to do : choose only 2 random index from landingPoints.length
@@ -55,12 +72,17 @@ function populateCableInfo() {
 	document.querySelector('#owners').innerHTML = singleCableData.owners;
 }
 
-async function showCableData(src){
+
+async function showPlatform(src){
 	singleCableData = await fetchSingleCableData(src);
 	// console.log(singleCableData);
-	populateCableInfo();
+	populatePlatform();
 	document.querySelector('#index-container').classList.remove("visible");
 }
+
+
+
+
 
 function initIndexLinks() {
 	let cableLinks = document.querySelectorAll('.a-cable');
@@ -68,7 +90,7 @@ function initIndexLinks() {
 		item.addEventListener('click', function(event) {
 			let cableJsonSrc = event.target.dataset.src;
 			console.log(cableJsonSrc);
-			showCableData(cableJsonSrc);
+			showPlatform(cableJsonSrc);
 		})
 	})
 }
@@ -95,6 +117,9 @@ const initPlatform = async() => {
 initPlatform()
 // .then(message => console.log({ message }))
 .catch(err => console.log({ err }));
+
+
+
 
 
 
